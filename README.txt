@@ -7,7 +7,7 @@
 DESCRIPTION:
 ===========
 
-The following is a program that takes a tree graph and make a visual representation
+The following is a program that takes a tree graph and makes a visual representation
 and gives the user tools to help discuss and evaluate said graph.
 
 Files for testing are located in the "graph" folder in this repository
