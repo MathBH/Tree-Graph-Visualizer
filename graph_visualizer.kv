@@ -1,0 +1,318 @@
+#:kivy  1.9.1
+#:import brighten helper
+#:import color_complement helper
+#:import luminescence helper
+#:import window kivy.core.window.Window
+#:import menu_bar_height graph_visualizer.menu_bar_height
+
+Root:
+
+	WindowWidget:
+		id: window
+		anchor_x: 'center'
+		anchor_y: 'center'
+		
+		canvas:
+			Color:
+				rgb: 0.57, 0.5679, 0.566
+			Rectangle:
+				pos: self.pos
+				size: self.size
+		
+	AnchorLayout:
+		anchor_y: 'top'
+		
+		BoxLayout:
+			orientation: 'vertical'
+			size_hint_y: None
+			height: menu_bar_height
+			
+			BoxLayout:
+				id: menu_bar
+				size_hint_y: 1
+				canvas:
+					Color:
+						rgb: 0.97, 0.9679, 0.966
+					Rectangle:
+						pos: self.pos
+						size: self.size
+					Color:
+						rgb: 0, 0, 0
+					Line:
+						width: 0.3
+						points: self.x, self.y, self.x + self.width, self.y
+				Button:
+					border: 0,0,0,0
+					background_normal: 'open_normal.png'
+					background_down: 'open_down.png'
+					size_hint_y: None
+					size_hint_x: None
+					height: menu_bar_height
+					width: menu_bar.height
+					on_release:
+						root.show_load()
+
+		#AnchorLayout:
+		#	anchor_y: 'bottom'
+		#	
+		#	BoxLayout:
+		#		size_hint_y: None
+		#		height: 30
+		#		TextInput:
+		#			id: dialog_bar
+		#			text: '//'
+
+<WindowWidget>:
+	#THIS EXISTS#
+				
+<LoadDialog>:
+	BoxLayout:
+		size: root.size
+		pos: root.pos
+		orientation: "vertical"
+		FileChooserListView:
+			id: filechooser
+
+		BoxLayout:
+			size_hint_y: None
+			height: 30
+			Button:
+				text: "Cancel"
+				on_release: root.cancel()
+
+			Button:
+				text: "Load"
+				on_release: root.load(filechooser.path, filechooser.selection)
+
+<TagWidget>:
+	target_x: 0
+	target_y: 0
+	target_pos: self.target_x, self.target_y
+	target_radius: 20
+	size_hint: None, None
+	size: self.target_radius, self.target_radius
+	
+	border:15
+	char_width: 7
+	char_height: 40
+	tag: "<insert tag>"
+	
+	pos_hint: {'center_x': self.target_x, 'center_y': self.target_y}
+	
+	Bubble:
+		center_x: root.center_x
+		y: root.top
+		size_hint: None, None
+		size: len(root.tag)*root.char_width + root.border*2, root.char_height
+		Label:
+			text: root.tag
+
+<ColorMenu>:
+	canvas:
+		Color:
+			rgba: 1, 0.5, 1, 0.2
+		Rectangle:
+			pos: self.pos
+			size: self.size
+		
+	ColorPicker:
+		pos: self.pos
+			
+<GraphItems>:
+	scale_index: 20
+	size_hint: None, None
+	size: self.scale_index, self.scale_index
+	
+<GraphWidget>:
+	scale_index: 20
+	bounding_box: 0, 0
+
+<CircularButton@Button>
+	radius: 1
+	size_hint: None, None
+	size: self.radius, self.radius
+	border: 0,0,0,0
+	
+	color: .4, .7, 1, 1
+	
+	background_color: self.color
+	background_down: self.background_normal
+	
+	on_release:
+		self.background_color = self.color
+
+<Leveler>:
+	color: (1,0,0,1)
+	y_anchor: 0
+	
+	pos_hint: {'center_y': self.y_anchor}
+	x: 100
+	
+	canvas:
+		Color:
+			rgba: 0, 0, 0, 1
+		Line:
+			width: 1.3
+			points: 0, self.center_y, window.width, self.center_y
+		
+		Color: 
+			rgba: root.color
+		Line:
+			width: 0.7
+			points: 0, self.center_y, window.width, self.center_y
+
+<Node>:
+	tag:"<node_tag>"
+	radius: 40	#to be patched (something weird happens if you set it to 1)
+	color: .4, .7, 1, 1
+	active_color: .6, .9, 1, 1
+	
+	selected: 0
+	
+	glow_active: 0
+	glow_color: (1,0,0,1)
+
+	size: self.radius, self.radius
+	
+	pos_x: 0
+	pos_y: 0
+	
+	pos_hint: {'center_x': self.pos_x, 'center_y': self.pos_y}
+	
+	CircularButton:
+		id: handle
+		radius: root.radius
+		
+		background_idle: 'node_normal.png'
+		background_selected: 'node_selected.png'
+		
+		background_normal: self.background_idle
+		
+		center_x: root.center_x
+		center_y: root.center_y
+		
+		canvas:
+			Color:
+				rgba: 1, 1, 1, root.selected
+			Rectangle:
+				source: 'node_select.png'
+				pos: self.pos
+				size: self.size
+				
+			Color:
+				rgba: root.glow_color[0], root.glow_color[1], root.glow_color[2], root.glow_active
+			Rectangle:
+				source: 'highlight.png'
+				pos: self.x - self.width*0.04, self.y - self.height*0.04
+				size: self.width*1.08, self.height*1.08
+	
+<Edge>:
+	tag: "<edge_tag>"
+	handle_size: 20
+	normal_color: .4, .7, 1, 1
+	active_color: .6, .9, 1, 1
+	color: .4, .7, 1, 0
+	
+	glow_active: 0
+	glow_color: (1,0,0,1)
+	
+	selected: 0
+	
+	tail_x: 0
+	tail_y: 0
+	head_x: 1
+	head_y: 1
+	
+	x_mod: 1
+	y_mod: 1
+	
+	size_hint: self.head_x - self.tail_x, self.head_y - self.tail_y
+	pos_hint: {'x': self.tail_x, 'y': self.tail_y}
+
+	canvas:
+		Color: 
+			rgb: 0,0,0
+		Line:
+			width: 2
+			points: self.x, self.y, self.x + self.width*self.x_mod, self.y + self.height*self.y_mod
+		Color:
+			rgba: root.glow_color[0], root.glow_color[1], root.glow_color[2], root.glow_active
+		Line:
+			width: 1.25
+			points: self.x, self.y, self.x + self.width*self.x_mod, self.y + self.height*self.y_mod
+			
+	CircularButton:
+		id: handle
+		radius: root.handle_size
+		
+		background_normal: 'edge_normal.png'
+		
+		center_x: root.x + root.width*root.x_mod*0.5
+		center_y: root.y + root.height*root.y_mod*0.5
+		on_press:
+			print "edgy"
+
+		canvas:
+			Color:
+				rgba: 1, 1, 1, root.selected
+			Rectangle:
+				source: 'edge_select.png'
+				pos: self.pos
+				size: self.size
+				
+			Color:
+				rgba: root.glow_color[0], root.glow_color[1], root.glow_color[2], root.glow_active
+			Rectangle:
+				source: 'highlight.png'
+				pos: self.pos
+				size: self.size
+	
+<ScreenWidget>:
+		
+	#THIS EXISTS#
+
+<TreeVisualizer>:
+	
+	scale_index: 60
+	node_radius: 40
+	graph_width: 100
+	graph_height: 100
+	graph_size: self.graph_width, self.graph_height
+	item_pos: 0, 0
+
+    canvas:
+        Color:
+			rgb: 0.97, 0.9679, 0.966
+        Rectangle:
+            pos: self.pos
+            size: self.size
+			
+	GraphWidget:
+		id: graph
+		pos: 0, 0
+		x_units: root.graph_width
+		y_units: root.graph_height
+		scale_index: root.scale_index
+		size: self.x_units*self.scale_index + root.node_radius, self.y_units*self.scale_index + root.node_radius
+	
+		item_pos: self.x + root.item_pos[0]*self.scale_index + root.node_radius*0.5, self.y + root.item_pos[1]*self.scale_index + root.node_radius*0.5
+		
+		#canvas:
+		#	Color:
+		#		rgba: 1, 0.5, 1, 0.2
+		#	Rectangle:
+		#		pos: self.pos
+		#		size: self.size
+		
+		GraphItems:
+			id: back_drop
+			pos: graph.item_pos
+			scale_index: graph.scale_index
+		
+		GraphItems:
+			pos: graph.item_pos
+			id: graph_items
+			scale_index: graph.scale_index
+			
+	ScreenWidget:
+		id: screen
