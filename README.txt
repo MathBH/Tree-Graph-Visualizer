@@ -71,7 +71,6 @@ Visualizer Commands:
 
 Aesthetics Command:
 -------------------
-
 -	c: set graph color
 -	ctrl+c: set selected edge/node color
 
