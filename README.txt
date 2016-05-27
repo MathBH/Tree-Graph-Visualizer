@@ -1,8 +1,16 @@
 
 					README
 					------
-
 ------------------------------------------------------------------------------------
+
+===========
+DESCRIPTION:
+===========
+
+The following is a program that takes a tree graph and make a visual representation
+and gives the user tools to help discuss and evaluate said graph.
+
+Files for testing are located in the "graph" folder in this repository
 
 ============
 REQUIREMENTS:
@@ -31,6 +39,9 @@ GRAPH VISUALIZER:
 
 Basic Commands:
 ---------------
+
+"Open file" button is situated in the upper left corner.
+
 -	Hold down the middle mouse button and drag to move the camera.
 -	Use the mouse wheel to zoom in or out.
 -	Use left click to select a node/edge.

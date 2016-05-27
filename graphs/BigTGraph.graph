@@ -1,0 +1,27 @@
+0
+24 3;Job;Name;ID#
+0;President;Dylan;0000001 1;VPStudentLife;Melissa;0000002 2;VPInternal;Rebecca;0000003 3;VPExternal;Blake;0000004 4;OnCampusCouncillor;Brian;0000005 5;OffCampusCouncillor;Tina;0000006 6;Secretary;Barbara;0000007 7;Security;Liam;0000008 8;FootballCoach;Bobby;0000009 9;GrassTrimmer;SirFarnsworth;0000010 10;WoodCutter;JamesHarisson;0000011 11;WoodlandLandscaper;BarbaraGordon;0000012 12;LeadArchitect;GordanStirling;0000013 13;MooseTrainer;LarryFurgutson;0000014 14;MooseFeeder;JamesFari;0000015 15;MooseToeNailTrimmer;LaurieMurray;0000016 16;VPMooseToeNailTrimmer;AerinFirgudson;0000017 17;VPExecutiveMooseToeNailTrimmer;SimonFairDowell;0000018 18;FinancialAdvisor;TurkHandfield;0000019 19;AdministrativeAdvisor;RonFarhan;0000020 20;TechnologicalAdvisor;SuzyForman;0000020 21;FightingPeopleAdvisor;BradPit;0000022 22;BeingReallyTiredAdvisor;YoursTruly;0000023 23;BoyAmIGladThisIsTheLastNodeAdvisor;EarnestHemingway;0000024
+23
+0 1
+1 2
+2 4
+2 3
+0 5
+1 6
+6 7
+7 8
+7 9
+3 10
+3 11
+8 12
+12 13
+13 15
+15 14
+10 16
+5 17
+11 18
+7 19
+19 20
+12 21
+12 22
+22 23

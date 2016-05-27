@@ -1,0 +1,12 @@
+0
+9 3;Job;Name;ID#
+0;President;Dylan;0000001 1;VPStudentLife;Melissa;0000002 2;VPInternal;Rebecca;0000003 3;VPExternal;Blake;0000004 4;OnCampusCouncillor;Brian;0000005 5;OffCampusCouncillor;Tina;0000006 6;Secretary;Barbara;0000007 7;Security;Liam;0000008 8;FootballCoach;Bobby;0000009
+8
+0 1
+0 2
+0 3
+1 4
+1 5
+3 6
+6 7
+6 8
