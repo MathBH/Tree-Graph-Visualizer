@@ -25,13 +25,18 @@ Python can be found at https://www.python.org/
 INSTALLATION:
 ============
 
-Do you have the folder on your computer? Then it's already installed! Whoo!
+Download and extract Tree-Graph-Visualizer.zip
+The resulting folder now contains the working program.
 
 ==========
 HOW TO RUN:
 ==========
 
-Double click on graph_visualizer.py or open it with python to activate it.
+There are two ways to run the visualizer:
+
+Method 1: Double click on graph_visualizer.py
+Method 2: In the command line, move to the folder containing graph_visualizer.py
+	  and type "python graph_visualizer.py".
 
 ================
 GRAPH VISUALIZER:
